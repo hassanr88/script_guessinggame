@@ -10,6 +10,23 @@ It prints a message when you get it right, too and allows you to play a new game
 use rand::Rng;
 use std::io;
 
+fn diff(n: i32, m: i32) {
+    let difference = (n - m).abs();
+                if difference > 50 {
+                    println!("You are FREEZING!");
+                } else if difference > 25 {
+                    println!("You are COLD!");
+                } else if difference > 15 {
+                    println!("You are COOL!");
+                } else if difference > 10 {
+                    println!("You are WARM!");
+                } else if difference > 5 {
+                    println!("You are HOT!");
+                } else {
+                    println!("You are BOILING!");
+                }
+}
+
 fn main() {
     println!("Welcome to the Guessing Game! Guess a number between 1 and 100. The closer you get, the hotter you are");
     let mut num = rand::rng();
@@ -25,36 +42,10 @@ fn main() {
                 continue;
             } else if guess > random_num {
                 println!("TOO HIGH!");
-                let difference = (guess - random_num).abs();
-                if difference > 50 {
-                    println!("You are FREEZING!");
-                } else if difference > 25 {
-                    println!("You are COLD!");
-                } else if difference > 15 {
-                    println!("You are COOL!");
-                } else if difference > 10 {
-                    println!("You are WARM!");
-                } else if difference > 5 {
-                    println!("You are HOT!");
-                } else {
-                    println!("You are BOILING!");
-                }
+                diff(guess, random_num);
             } else if guess < random_num {
                 println!("TOO LOW!");
-                let difference = (random_num - guess).abs();
-                if difference > 50 {
-                    println!("You are FREEZING!");
-                } else if difference > 25 {
-                    println!("You are COLD!");
-                } else if difference > 15 {
-                    println!("You are COOL!");
-                } else if difference > 10 {
-                    println!("You are WARM!");
-                } else if difference > 5 {
-                    println!("You are HOT!");
-                } else {
-                    println!("You are BOILING!");
-                }
+                diff(guess, random_num);
             } else {
                 println!("Congratulations! You guessed the number {}!", random_num);
                 break;
